@@ -1,0 +1,597 @@
+@font-face {
+    font-family: thisFont;
+    src: url(assets/fonts/Ubuntu-Regular.ttf);
+}
+
+:root {
+    font-family: thisFont;
+    margin-top: 115px;
+}
+
+h1,p {
+    margin: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.selected {
+    border-width: 1px;
+    border-color: rgb(75, 0, 75);
+    border-style: solid;
+}
+
+.error {
+    border-width: 1px;
+    border-color: red;
+    border-style: solid !important;
+}
+
+.component-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.form-main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+}
+
+.form-left-part {
+    display: flex;
+    flex-direction: column;
+    background-image: url(assets/images/bg-sidebar-desktop.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    padding: 30px;
+    width: 250px;
+    height: 600px;
+    gap: 30px;
+}
+
+.form-step-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 200px;
+    gap: 20px;
+}
+
+.form-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    border-color: rgb(191, 225, 252);
+    color: rgb(191, 225, 252);
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.form-circle.active {
+    color: black;
+    background-color: rgb(191, 225, 252);
+}
+
+.form-step-txt {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+}
+
+.form-step-txt>h1{
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: lighter;
+    font-size: 15px;
+}
+
+.form-step-txt>p{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* Personal Info */
+.form-personal-info-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    gap: 80px;
+}
+
+.form-personal-info-container>button{
+    align-self: flex-end;
+}
+
+.form-top-part {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-top-part>h1{
+    color: rgb(2, 42, 91);
+    font-weight: bolder;
+}
+
+.form-top-part>p{
+    color: gray;
+}
+
+.form-input-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-part {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-part-txt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-part-txt>label{
+    color: rgb(2, 42, 91);
+    font-weight: 500;
+}
+
+.form-part-txt>p{
+    color: red;
+}
+
+.form-part>input{
+    border-style: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-part>input:focus{
+    outline-color: rgb(75, 0, 75);
+}
+
+.next-btn {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(3, 41, 90);
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 120px;
+    transition: 0.5s;
+}
+
+.next-btn:hover{
+    background-color: rgb(23, 74, 139);
+    transition: 0.5s;
+}
+
+/* Select Yout Plan */
+.form-select-plan-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    gap: 30px;
+}
+
+.form-option-holder {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.form-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    padding: 20px;
+    gap: 30px;
+    border-radius: 15px;
+    width: 200px;
+    height: 150px;
+}
+
+.form-option:hover{
+    outline-color: rgb(1, 41, 92);
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+.form-option>img{
+    width: 50px;
+    height: 50px;
+}
+
+.form-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-desc>h1{
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.form-desc>p:not(:last-child){
+    color: gray;
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+.form-plan-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 10px;
+}
+
+.switch {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: rgb(1, 41, 92);
+    border-radius: 15px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sldier {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.check-box:checked + .slider {
+    background-color: #2196F3;
+}
+
+.check-box:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+.check-box:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 50%;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.form-plan-bottom-btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-plan-bottom-btns>p{
+    color: rgba(128, 128, 128, 0.75);
+}
+
+.form-plan-bottom-btns>p:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Pick Add-Ons */
+.pick-add-ons-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    gap: 20px;
+}
+
+.pick-add-ons-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pick-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.pick-options:hover{
+    outline-color: rgb(1, 41, 92);
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+.pick-options>p{
+    color: rgb(2, 42, 91);
+    font-weight: lighter;
+}
+
+.pick-flex-start {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pick-txt>h1,p{
+    font-size: 15px;
+}
+
+.pick-txt>h1{
+    color: rgb(2, 42, 91);
+}
+
+.pick-txt>p{
+    color: rgba(128, 128, 128, 0.75);
+    font-weight: lighter;
+}
+
+.pick-checkbox {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+/* Finishing Up */
+.finishing-up-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    gap: 20px;
+}
+
+.finishing-up-info-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.plan-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plan-txt>p:first-child{
+    color: rgb(2, 42, 91);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.plan-txt>p:last-child{
+    color: gray;
+    width: min-content;
+    font-size: 15px;
+    font-weight: lighter;
+    text-decoration: underline;
+}
+
+.plan-info-price {
+    color: rgb(2, 42, 91);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.plan-txt>p:last-child:hover{
+    color: rgba(0, 0, 255, 0.5);
+    cursor: pointer;
+}
+
+.add-ons-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.add-ons-txt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.add-ons-txt>p:first-child{
+    color: gray;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    height: 40px;
+}
+
+.total-price>p:first-child{
+    font-weight: bolder;
+}
+
+.total-price>p:last-child{
+    color: blue;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.confirm-btn {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(72, 62, 255);
+    border-style: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 120px;
+    transition: 0.5s;
+}
+
+.confirm-btn:hover {
+    background-color: rgba(72, 62, 255, 0.75)
+}
+
+/* Thank You! */
+.thank-you-container {    
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    gap: 20px;
+}
+
+.thank-you-container>img{
+    width: 80px;
+    height: 80px;
+}
+
+.thank-you-container>h1{
+    color: rgb(2, 42, 91);
+    font-weight: bolder;
+}
+
+.thank-you-container>p{
+    color: gray;
+    line-height: 30px;
+}
+
+@keyframes showUp {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.active-animation {
+    display: flex;
+    animation-name: showUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+/* Responsive */
+@media only screen and (max-width: 870px) {
+    :root {
+        margin-top: 0px;
+    }
+
+    .component-holder {
+        margin-top: 200px;
+    }
+
+    .form-left-part {
+        position: absolute;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        background-image: url(assets/images/bg-sidebar-mobile.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .form-step-content {
+        width: fit-content;
+        gap: 5px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .form-step-txt {
+        width: fit-content;
+    }
+}
+
+@media only screen and (max-width: 565px) {
+    .form-step-txt {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .form-personal-info-container,
+    .form-select-plan-container,
+    .pick-add-ons-container,
+    .finishing-up-container,
+    .thank-you-container {
+        width: 350px;
+    }
+
+    .form-option {
+        width: fit-content;
+        height: fit-content;
+        justify-content: start;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .form-personal-info-container,
+    .form-select-plan-container,
+    .pick-add-ons-container,
+    .finishing-up-container,
+    .thank-you-container {
+        width: 300px;
+    }
+
+    .form-select-plan-container>.form-option-holder{
+        justify-content: start;
+    }
+
+    .form-option-holder {
+        gap: 10px;
+    }
+}
