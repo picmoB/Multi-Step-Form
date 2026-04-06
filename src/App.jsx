@@ -1,4 +1,4 @@
-import { useState , useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 // Images
@@ -23,7 +23,7 @@ function App() {
         <LeftPart></LeftPart>
         <RightPart></RightPart>
       </main>
-    )
+    );
   }
 
   // Left Part of Main Container
@@ -31,7 +31,9 @@ function App() {
     return (
       <section className="form-left-part">
         <div className="form-step-content">
-          <div className={currentPart === 1 ? "form-circle active" : "form-circle"}>
+          <div
+            className={currentPart === 1 ? "form-circle active" : "form-circle"}
+          >
             <p>1</p>
           </div>
           <div className="form-step-txt">
@@ -40,7 +42,9 @@ function App() {
           </div>
         </div>
         <div className="form-step-content">
-          <div className={currentPart === 2 ? "form-circle active" : "form-circle"}>
+          <div
+            className={currentPart === 2 ? "form-circle active" : "form-circle"}
+          >
             <p>2</p>
           </div>
           <div className="form-step-txt">
@@ -49,7 +53,9 @@ function App() {
           </div>
         </div>
         <div className="form-step-content">
-          <div className={currentPart === 3 ? "form-circle active" : "form-circle"}>
+          <div
+            className={currentPart === 3 ? "form-circle active" : "form-circle"}
+          >
             <p>3</p>
           </div>
           <div className="form-step-txt">
@@ -58,7 +64,9 @@ function App() {
           </div>
         </div>
         <div className="form-step-content">
-          <div className={currentPart === 4 ? "form-circle active" : "form-circle"}>
+          <div
+            className={currentPart === 4 ? "form-circle active" : "form-circle"}
+          >
             <p>4</p>
           </div>
           <div className="form-step-txt">
@@ -67,7 +75,7 @@ function App() {
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   // Right Part of Main Container
@@ -80,7 +88,7 @@ function App() {
         <FinishingUp></FinishingUp>
         <ThankYou></ThankYou>
       </div>
-    )
+    );
   }
 
   // Personal Info
@@ -91,15 +99,22 @@ function App() {
     const [phoneError, setPhoneError] = useState("");
 
     // Input Values
-    const [name, setName] = useState(sessionStorage.getItem("nameStorage" || ""));
-    const [email, setEmail] = useState(sessionStorage.getItem("emailStorage" || ""));
-    const [phone, setPhone] = useState(sessionStorage.getItem("phoneStorage" || ""));
+    const [name, setName] = useState(
+      sessionStorage.getItem("nameStorage" || ""),
+    );
+    const [email, setEmail] = useState(
+      sessionStorage.getItem("emailStorage" || ""),
+    );
+    const [phone, setPhone] = useState(
+      sessionStorage.getItem("phoneStorage" || ""),
+    );
 
     // RegEx
     const SPECIAL_CHARACTERS = /[!@#$%^&*()\-+={}[\]:;"'<>?,.\/|\\]/;
     const NAME_VALIDATION = /^[a-z ,.']+$/i;
     const EMAIL_VALIDATION = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const PHONE_VALIDATION = /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    const PHONE_VALIDATION =
+      /^[\+]?[0-9]{0,3}\W?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
 
     /* hasError Check */
     let hasError = false;
@@ -114,13 +129,13 @@ function App() {
       // Clear All Data from Session Storage Function
       const handleBeforeUnload = () => {
         sessionStorage.clear();
-      }
+      };
 
       window.addEventListener("beforeunload", handleBeforeUnload);
 
       return () => {
         window.removeEventListener("beforeunload", handleBeforeUnload);
-      }
+      };
     }, [name, email, phone]);
 
     const infoValidation = () => {
@@ -143,7 +158,7 @@ function App() {
         setEmailError("Invalid email input.");
         hasError = true;
       } else {
-        setEmailError("")
+        setEmailError("");
       }
 
       // Check for Phone
@@ -166,12 +181,18 @@ function App() {
         // Call This Function
         nextPart();
       }
-    }
+    };
 
     /* style={currentPart === Number.parseInt(pageIndex[0]) ? {display: "flex"} : {display: "none"}} */
 
     return (
-      <section className={currentPart === pageIndex[0] ? "form-personal-info-container active-animation" : "form-personal-info-container"}>
+      <section
+        className={
+          currentPart === pageIndex[0]
+            ? "form-personal-info-container active-animation"
+            : "form-personal-info-container"
+        }
+      >
         <div className="form-top-part">
           <h1>Personal Info</h1>
           <p>Please provide your name, email address, and phone number.</p>
@@ -183,13 +204,13 @@ function App() {
               <label htmlFor="nameId">Name</label>
               {nameError && <p className="error-msg">{nameError}</p>}
             </div>
-            <input 
+            <input
               ref={nameRef}
-              id="nameId" 
-              className={nameError ? "error" : ""} 
-              type="text" 
-              placeholder="e.g Stephen King" 
-              value={name || ""} 
+              id="nameId"
+              className={nameError ? "error" : ""}
+              type="text"
+              placeholder="e.g Stephen King"
+              value={name || ""}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -198,13 +219,13 @@ function App() {
               <label htmlFor="emailId">Email Address</label>
               {emailError && <p className="error-msg">{emailError}</p>}
             </div>
-            <input 
+            <input
               ref={emailRef}
-              id="emailId" 
-              className={emailError ? "error" : ""} 
-              type="text" 
-              placeholder="e.g stephenking@lorem.com" 
-              value={email || ""} 
+              id="emailId"
+              className={emailError ? "error" : ""}
+              type="text"
+              placeholder="e.g stephenking@lorem.com"
+              value={email || ""}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -213,40 +234,40 @@ function App() {
               <label htmlFor="phoneId">Phone Number</label>
               {phoneError && <p className="error-msg">{phoneError}</p>}
             </div>
-            <input 
+            <input
               ref={phoneRef}
-              id="phoneId" 
-              className={phoneError ? "error" : ""} 
-              type="tel" 
-              placeholder="e.g +1 234 567 890" 
-              value={phone || ""} 
+              id="phoneId"
+              className={phoneError ? "error" : ""}
+              type="tel"
+              placeholder="e.g +1 234 567 890"
+              value={phone || ""}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
         </div>
 
-        <button className="next-btn" type="button" onClick={infoValidation}>Next step</button>
+        <button className="next-btn" type="button" onClick={infoValidation}>
+          Next step
+        </button>
       </section>
-    )
+    );
   }
 
   // Select Your Plan
   function SelectYourPlan() {
     // Load from Session Storage
-    let storedArcade = sessionStorage.getItem("arcadeStorage");
-    let storedAdvanced = sessionStorage.getItem("advancedStorage");
-    let storedPro = sessionStorage.getItem("proStorage");
-    let storedSwitch = sessionStorage.getItem("switchStorage");
-
-    // Intentional Conversion (String => Boolean)
-    let isStoredTrue = (storedSwitch === 'true');
-
-    /* would be better if I put those sessionStorage in global scope :/ */
-
-    let [isArcade, setIsArcade] = useState(storedArcade || "false");
-    let [isAdvanced, setIsAdvanced] = useState(storedAdvanced || "false");
-    let [isPro, setIsPro] = useState(storedPro || "false");
-    let [isSwitched, setIsSwitched] = useState(isStoredTrue || false);
+    let [isArcade, setIsArcade] = useState(
+      () => sessionStorage.getItem("arcadeStorage") || "false",
+    );
+    let [isAdvanced, setIsAdvanced] = useState(
+      () => sessionStorage.getItem("advancedStorage") || "false",
+    );
+    let [isPro, setIsPro] = useState(
+      () => sessionStorage.getItem("proStorage") || "false",
+    );
+    let [isSwitched, setIsSwitched] = useState(
+      () => sessionStorage.getItem("switchStorage") === "true",
+    );
 
     // Plan Validation
     const planValidation = () => {
@@ -257,47 +278,58 @@ function App() {
         alert("Please select a plan.");
         return;
       }
-    }
+    };
 
     // Monthly or Yearly
     const switchPlan = () => {
       setIsSwitched((prev) => !prev);
-      console.log(isSwitched);
-    }
+    };
 
     // Session Storage for Plan Selection
-    sessionStorage.setItem("arcadeStorage", isArcade);
-    sessionStorage.setItem("advancedStorage", isAdvanced);
-    sessionStorage.setItem("proStorage", isPro);
-    sessionStorage.setItem("switchStorage", isSwitched);
+    useEffect(() => {
+      sessionStorage.setItem("arcadeStorage", isArcade);
+      sessionStorage.setItem("advancedStorage", isAdvanced);
+      sessionStorage.setItem("proStorage", isPro);
+      sessionStorage.setItem("switchStorage", isSwitched);
+    }, [isArcade, isAdvanced, isPro, isSwitched]);
 
     /* style={currentPart === Number.parseInt(pageIndex[1]) ? {display: "flex"} : {display: "none"}} */
 
     return (
-      <section className={currentPart === pageIndex[1] ? "form-select-plan-container active-animation" : "form-select-plan-container"}>
+      <section
+        className={
+          currentPart === pageIndex[1]
+            ? "form-select-plan-container active-animation"
+            : "form-select-plan-container"
+        }
+      >
         <div className="form-top-part">
           <h1>Select your plan</h1>
           <p>You have the option of monthly or yearly billing.</p>
         </div>
 
         <div className="form-option-holder">
-          <div 
-            className={storedArcade === "true" ? "form-option selected" : "form-option"} 
+          <div
+            className={
+              isArcade === "true" ? "form-option selected" : "form-option"
+            }
             onClick={() => {
               setIsArcade("true");
               setIsAdvanced("false");
               setIsPro("false");
             }}
           >
-          <img src={logoArcade} alt="img-logo" />
-          <div className="form-desc">
-            <h1>Arcade</h1>
-            <p>{isSwitched === false ? "$9/mo" : "$90/yr"}</p>
-            {isSwitched !== false && <p>2 months free</p>}
+            <img src={logoArcade} alt="img-logo" />
+            <div className="form-desc">
+              <h1>Arcade</h1>
+              <p>{!isSwitched ? "$9/mo" : "$90/yr"}</p>
+              {isSwitched && <p>2 months free</p>}
+            </div>
           </div>
-          </div>
-          <div 
-            className={storedAdvanced === "true" ? "form-option selected" : "form-option"} 
+          <div
+            className={
+              isAdvanced === "true" ? "form-option selected" : "form-option"
+            }
             onClick={() => {
               setIsArcade("false");
               setIsAdvanced("true");
@@ -307,13 +339,15 @@ function App() {
             <img src={logoAdvanced} alt="img-logo" />
             <div className="form-desc">
               <h1>Advanced</h1>
-              <p>{isSwitched === false ? "$12/mo" : "$120/yr"}</p>
-              {isSwitched !== false && <p>2 months free</p>}
+              <p>{!isSwitched ? "$12/mo" : "$120/yr"}</p>
+              {isSwitched && <p>2 months free</p>}
             </div>
           </div>
-          <div 
-            className={storedPro === "true" ? "form-option selected" : "form-option"} 
-            onClick={() =>  {
+          <div
+            className={
+              isPro === "true" ? "form-option selected" : "form-option"
+            }
+            onClick={() => {
               setIsArcade("false");
               setIsAdvanced("false");
               setIsPro("true");
@@ -322,8 +356,8 @@ function App() {
             <img src={logoPro} alt="img-logo" />
             <div className="form-desc">
               <h1>Pro</h1>
-              <p>{isSwitched === false ? "$15/mo" : "$150/yr"}</p>
-              {isSwitched !== false && <p>2 months free</p>}
+              <p>{!isSwitched ? "$15/mo" : "$150/yr"}</p>
+              {isSwitched && <p>2 months free</p>}
             </div>
           </div>
         </div>
@@ -331,42 +365,39 @@ function App() {
         <div className="form-plan-toggle">
           <p>Monthly</p>
           <label className="switch">
-            <input type="checkbox" className="check-box" checked={isStoredTrue === true} onChange={switchPlan}/>
+            <input
+              type="checkbox"
+              className="check-box"
+              checked={isSwitched}
+              onChange={switchPlan}
+            />
             <span className="slider round"></span>
           </label>
           <p>Yearly</p>
         </div>
 
         <div className="form-plan-bottom-btns">
-          <p className="prev-btn" onClick={prevPart}>Go back</p>
-          <button className="next-btn" type="button" onClick={planValidation}>Next step</button>
+          <p className="prev-btn" onClick={prevPart}>
+            Go back
+          </p>
+          <button className="next-btn" type="button" onClick={planValidation}>
+            Next step
+          </button>
         </div>
       </section>
-    )
+    );
   }
 
   // Pick Add-Ons
   function PickAddOns() {
     // Session Storage for Pick-Add-Ons
-    /* pick add-ons */
-    let storedOnline = sessionStorage.getItem("onlineStorage");
-    let storedLarger = sessionStorage.getItem("largerStorage");
-    let storedCustom = sessionStorage.getItem("customStorage");
-
-    /* load from 'Select Plan' */
-    let storedSwitch = sessionStorage.getItem("switchStorage");
-
-    // Intentional Conversion (String => Boolean)
-    let isOnlineTrue = (storedOnline === 'true');
-    let isLargerTrue = (storedLarger === 'true');
-    let isCustomTrue = (storedCustom === 'true');
-
-    const [isOnline, setIsOnline] = useState(isOnlineTrue || false);
-    const [isLarger, setIsLarger] = useState(isLargerTrue || false);
-    const [isCustom, setIsCustom] = useState(isCustomTrue || false);
+    const [isOnline, setIsOnline] = useState(() => sessionStorage.getItem("onlineStorage") === "true");
+    const [isLarger, setIsLarger] = useState(() => sessionStorage.getItem("largerStorage") === "true");
+    const [isCustom, setIsCustom] = useState(() => sessionStorage.getItem("customStorage") === "true");
+    const [isSwitched, setIsSwitched] = useState(() => sessionStorage.getItem("switchStorage") === "true");
 
     const pickAddOnsCheck = () => {
-      if (isOnline === false && isLarger === false && isCustom === false) {
+      if (!isOnline && !isLarger && !isCustom) {
         // Notify the user to select at least one add-on
         alert("Please select at least one add-on.");
         return;
@@ -375,9 +406,11 @@ function App() {
       }
     }
 
-    sessionStorage.setItem("onlineStorage", isOnline);
-    sessionStorage.setItem("largerStorage", isLarger);
-    sessionStorage.setItem("customStorage", isCustom);
+    useEffect(() => {
+      sessionStorage.setItem("onlineStorage", isOnline);
+      sessionStorage.setItem("largerStorage", isLarger);
+      sessionStorage.setItem("customStorage", isCustom);
+    }, [isOnline, isLarger, isCustom]);
 
     /* style={currentPart === Number.parseInt(pageIndex[2]) ? {display: "flex"} : {display: "none"}} */
 
@@ -389,35 +422,35 @@ function App() {
         </div>
 
         <div className="pick-add-ons-holder">
-          <div className={isOnlineTrue === true ? "pick-options selected" : "pick-options"} onClick={() => setIsOnline((prev) => !prev)}>
+          <div className={isOnline ? "pick-options selected" : "pick-options"} onClick={() => setIsOnline((prev) => !prev)}>
             <div className="pick-flex-start">
-              <input id="online" className="pick-checkbox" type="checkbox" checked={isOnlineTrue === true} readOnly/>
+              <input id="online" className="pick-checkbox" type="checkbox" checked={isOnline} readOnly/>
               <div className="pick-txt">
                 <h1>Online service</h1>
                 <p>Access to multiplayer games</p>
               </div>
             </div>
-            <p>{storedSwitch === "false" ? "+$1/mo" : "+$10/yr"}</p>
+            <p>{!isSwitched ? "+$1/mo" : "+$10/yr"}</p>
           </div>
-          <div className={isLargerTrue === true ? "pick-options selected" : "pick-options"} onClick={() => setIsLarger((prev) => !prev)}>
+          <div className={isLarger ? "pick-options selected" : "pick-options"} onClick={() => setIsLarger((prev) => !prev)}>
             <div className="pick-flex-start">
-              <input id="storage" className="pick-checkbox" type="checkbox" checked={isLargerTrue === true} readOnly/>
+              <input id="storage" className="pick-checkbox" type="checkbox" checked={isLarger} readOnly/>
               <div className="pick-txt">
                 <h1>Larger storage</h1>
                 <p>Extra 1TB of cloud save</p>
               </div>
             </div>
-            <p>{storedSwitch === "false" ? "+$2/mo" : "+$20/yr"}</p>
+            <p>{!isSwitched ? "+$2/mo" : "+$20/yr"}</p>
           </div>
-          <div className={isCustomTrue === true ? "pick-options selected" : "pick-options"} onClick={() => setIsCustom((prev) => !prev)}>
+          <div className={isCustom ? "pick-options selected" : "pick-options"} onClick={() => setIsCustom((prev) => !prev)}>
             <div className="pick-flex-start">
-              <input id="customizable" className="pick-checkbox" type="checkbox" checked={isCustomTrue === true} readOnly/>
+              <input id="customizable" className="pick-checkbox" type="checkbox" checked={isCustom} readOnly/>
               <div className="pick-txt">
                 <h1>Customizable profile</h1>
                 <p>Custom theme on your profile</p>
               </div>
             </div>
-            <p>{storedSwitch === "false" ? "+$2/mo" : "+$20/yr"}</p>
+            <p>{!isSwitched ? "+$2/mo" : "+$20/yr"}</p>
           </div>
         </div>
 
@@ -446,7 +479,13 @@ function App() {
     /* style={currentPart === Number.parseInt(pageIndex[3]) ? {display: "flex"} : {display: "none"}} */
 
     return (
-      <section className={currentPart === pageIndex[3] ? "finishing-up-container active-animation" : "finishing-up-container"}>
+      <section
+        className={
+          currentPart === pageIndex[3]
+            ? "finishing-up-container active-animation"
+            : "finishing-up-container"
+        }
+      >
         <div className="form-top-part">
           <h1>Finishing Up</h1>
           <p>Double-check everything looks OK before confirming.</p>
@@ -460,25 +499,45 @@ function App() {
               {storedPro === "true" && <p>Pro</p>}
               <p onClick={loadSelectPlan}>Change</p>
             </div>
-            {storedArcade === "true" && <p className="plan-info-price">{storedSwitch === "false" ? `$${9}/mo` : `$${90}/yr`}</p>}
-            {storedAdvanced === "true" && <p className="plan-info-price">{storedSwitch === "false" ? `$${12}/mo` : `$${120}/yr`}</p>}
-            {storedPro === "true" && <p className="plan-info-price">{storedSwitch === "false" ? `$${15}/mo` : `$${150}/yr`}</p>}
+            {storedArcade === "true" && (
+              <p className="plan-info-price">
+                {storedSwitch === "false" ? `$${9}/mo` : `$${90}/yr`}
+              </p>
+            )}
+            {storedAdvanced === "true" && (
+              <p className="plan-info-price">
+                {storedSwitch === "false" ? `$${12}/mo` : `$${120}/yr`}
+              </p>
+            )}
+            {storedPro === "true" && (
+              <p className="plan-info-price">
+                {storedSwitch === "false" ? `$${15}/mo` : `$${150}/yr`}
+              </p>
+            )}
           </div>
           <div className="add-ons-info">
-            {storedOnline === "true" && <div id="online-service" className="add-ons-txt">
-              <p>Online service</p>
-              <p>{storedSwitch === "false" ? `$${1}/mo` : `$${10}/yr`}</p>
-            </div>}
-            {storedLarger === "true" && <div id="larger-storage" className="add-ons-txt">
-              <p>Larger storage</p>
-              <p>{storedSwitch === "false" ? `$${2}/mo` : `$${20}/yr`}</p>
-            </div>}
-            {storedCustom === "true" && <div id="customizable-profile" className="add-ons-txt">
-              <p>Customizable profile</p>
-              <p>{storedSwitch === "false" ? `$${2}/mo` : `$${20}/yr`}</p>
-            </div>}
+            {storedOnline === "true" && (
+              <div id="online-service" className="add-ons-txt">
+                <p>Online service</p>
+                <p>{storedSwitch === "false" ? `$${1}/mo` : `$${10}/yr`}</p>
+              </div>
+            )}
+            {storedLarger === "true" && (
+              <div id="larger-storage" className="add-ons-txt">
+                <p>Larger storage</p>
+                <p>{storedSwitch === "false" ? `$${2}/mo` : `$${20}/yr`}</p>
+              </div>
+            )}
+            {storedCustom === "true" && (
+              <div id="customizable-profile" className="add-ons-txt">
+                <p>Customizable profile</p>
+                <p>{storedSwitch === "false" ? `$${2}/mo` : `$${20}/yr`}</p>
+              </div>
+            )}
             <div className="total-price">
-              <p>Total {storedSwitch === "false" ? `(per month)` : `(per year)`}</p>
+              <p>
+                Total {storedSwitch === "false" ? `(per month)` : `(per year)`}
+              </p>
               <p>
                 {
                   /* Calculate Total Price */
@@ -504,7 +563,7 @@ function App() {
                     if (storedCustom === "true") {
                       total += storedSwitch === "false" ? 2 : 20;
                     }
-                    return (`$${total}${storedSwitch === "false" ? "/mo" : "/yr"}`);
+                    return `$${total}${storedSwitch === "false" ? "/mo" : "/yr"}`;
                   })()
                 }
               </p>
@@ -512,12 +571,16 @@ function App() {
           </div>
 
           <div className="form-plan-bottom-btns">
-            <p className="prev-btn" onClick={prevPart}>Go back</p>
-            <button className="confirm-btn" onClick={nextPart}>Confirm</button>
+            <p className="prev-btn" onClick={prevPart}>
+              Go back
+            </p>
+            <button className="confirm-btn" onClick={nextPart}>
+              Confirm
+            </button>
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   /* style={currentPart === Number.parseInt(pageIndex[4]) ? {display: "flex"} : {display: "none"}} */
@@ -525,14 +588,22 @@ function App() {
   // Thank You!
   function ThankYou() {
     return (
-      <section className={currentPart === pageIndex[4] ? "thank-you-container active-animation" : "thank-you-container"}>
+      <section
+        className={
+          currentPart === pageIndex[4]
+            ? "thank-you-container active-animation"
+            : "thank-you-container"
+        }
+      >
         <img src={logoCompleted} alt="img-logo" />
         <h1>Thank you!</h1>
         <p>
-          Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.
+          Thanks for confirming your subscription! We hope you have fun using
+          our platform. If you ever need support, please feel free to email us
+          at support@loremgaming.com.
         </p>
       </section>
-    )
+    );
   }
 
   // =====================================================================
@@ -548,22 +619,19 @@ function App() {
     // Increment
     setCurrentPart((prev) => prev + 1);
     console.log(currentPart);
-  }
+  };
 
   const prevPart = () => {
     // Decrement
     setCurrentPart((prev) => prev - 1);
     console.log(currentPart);
-  }
+  };
 
   const loadSelectPlan = () => {
     setCurrentPart(2);
-  }
+  };
 
-  return (
-    <MainContainer>
-    </MainContainer>
-  )
+  return <MainContainer></MainContainer>;
 }
 
 export default App;
